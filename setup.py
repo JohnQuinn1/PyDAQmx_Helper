@@ -5,9 +5,9 @@ except ImportError:
 
 setup(
     name='PyDAQmx_Helper',
-    version='0.1.0',
-    author='Marco Forte',
-    author_email='fortemarco.irl@gmail.com',
+    version='0.3.0',
+    author='John Quinn',
+    author_email='john.quinn@ucd.ie',
     packages=['pydaqmx_helper', 'pydaqmx_helper.test'],
     license='LICENSE.txt',
     description='Python classes to help with everyday PyDAQmx tasks',

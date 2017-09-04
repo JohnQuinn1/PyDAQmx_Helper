@@ -10,12 +10,12 @@ Should display a nice looking sine wave plot
 import numpy
 import matplotlib.pyplot as plt
 
-from pydaqmx_helper.atod import AtoD
+from pydaqmx_helper.adc import ADC
 
-myAtoD = AtoD()
-myAtoD.addChannels([0])
+myADC = ADC()
+myADC.addChannels([0])
 
-data = list(myAtoD.sampleVoltages(100, 100)[0])
+data = list(myADC.sampleVoltages(100, 100)[0])
 
 x = numpy.arange(100)
 print(numpy.average(data))
