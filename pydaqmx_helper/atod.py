@@ -38,7 +38,7 @@ class AtoD(Task):
         sample = np.zeros(len(activeChannels)*nPointsPerChannel)
         self.CfgSampClkTiming(b"", sampleRate, DAQmx_Val_Rising, DAQmx_Val_FiniteSamps, 2 if nPointsPerChannel == 1 else nPointsPerChannel)
         self.StartTask()
-        self.ReadAnalogF64(nPointsPerChannel, -1, DAQmx_Val_GroupByChannel, sample,  len(activeChannels)*nPointsPerChannel, byref(read), None)
+        self.ReadAnalogF64(nPointsPerChannel, -1, DAQmx_Val_GroupByChannel, sample,  len(activeChannels)*nPointsPerChannel, ctypes.byref(read), None)
         self.StopTask()
         sample = list(AtoD.grouper(sample, nPointsPerChannel))
         sample = OrderedDict(zip(activeChannels, sample))
@@ -69,7 +69,7 @@ class AtoD(Task):
         At the end correctly extracts channel number from returned string of active channels
         """
         # Allocate space for channels,  simpler than getting exact right amount
-        activeChannels = c_char_p(b"x"*300)
+        activeChannels = ctypes.c_char_p(b"x"*300)
         self.GetTaskChannels(activeChannels, 300)
         if(activeChannels.value == b""):
             return []
