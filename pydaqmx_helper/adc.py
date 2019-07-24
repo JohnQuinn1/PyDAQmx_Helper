@@ -45,7 +45,7 @@ class ADC(Task):
                            DAQmx_Val_GroupByChannel, 
                            sample,  
                            len(activeChannels)*nPointsPerChannel, 
-                           byref(read), 
+                           ctypes.byref(read), 
                            None)
         self.StopTask()
         sample = list(ADC.grouper(sample, nPointsPerChannel))
@@ -67,7 +67,7 @@ class ADC(Task):
     
     def readVoltage(self):
         """ Read a floating-point voltage from a task with one channel"""
-        voltage = c_double(0)
+        voltage = ctypes.c_double(0)
         self.ReadAnalogScalarF64(-1, voltage, None)
         return voltage.value
 
@@ -78,7 +78,7 @@ class ADC(Task):
         At the end correctly extracts channel number from returned string of active channels
         """
         # Allocate space for channels,  simpler than getting exact right amount
-        activeChannels = c_char_p(b"x"*300)
+        activeChannels = ctypes.c_char_p(b"x"*300)
         self.GetTaskChannels(activeChannels, 300)
         if(activeChannels.value == b""):
             return []

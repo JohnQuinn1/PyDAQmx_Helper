@@ -36,11 +36,11 @@ print(data)
 
 print("Saving raw and frequency counts to file")
 
-f = open('rawCounterData.txt’, 'w')
+f = open('rawCounterData.txt', 'w')
 f.write(repr(rawData))
 f.close()
 
-f = open('frequencyCounterData.txt’, 'w')
+f = open('frequencyCounterData.txt', 'w')
 f.write(repr(data))
 f.close()
 
