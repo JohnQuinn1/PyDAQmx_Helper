@@ -10,7 +10,8 @@ from pydaqmx_helper.adc import ADC
 
 myADC = ADC()
 myADC.addChannels([0, 1, 2])
-sample = myADC.sampleVoltages(10, 10)
-print(sample)
-print('Printing just values ')
-print(list(sample.values()))
+samples = myADC.sampleVoltages(10, 10)
+
+print("Samples for Channel 0:",samples[0])
+print("Samples for Channel 1:",samples[1])
+print("Samples for Channel 2:",samples[2])
